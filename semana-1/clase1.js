@@ -2,8 +2,20 @@
 /*                                  FUNCION 1                                 */
 /* -------------------------------------------------------------------------- */
 function iniciarJuego() {
+    // Saludo al usuario
+    alert("Bienvenido al popular juego de piedra papel o tijera de Frontend 2.");
+    // Guardar en una variable el nombre ingresado. 
+    const nombre = prompt("Ingrese su nombre por favor: ");
 
+    // alert("Gracias por jugar " + nombre + ". ¡Mucha suerte!");
+    alert(`Gracias por jugar ${nombre}. ¡Mucha suerte!`);
 
+    console.log("---------------------");
+    console.log("El nombre del jugador es: ");
+    console.log(nombre);
+    console.log("---------------------");
+    
+    return nombre
 }
 
 // creamos una variable a nivel global para guardar el nombre del jugador que nos devuelve la función
