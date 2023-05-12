@@ -51,6 +51,7 @@ function iniciarJuego() {
     
     return nombre
 }
+// main()
 
 // creamos una variable a nivel global para guardar el nombre del jugador que nos devuelve la función
-const nombreJugador = iniciarJuego();
+// const nombreJugador = iniciarJuego();

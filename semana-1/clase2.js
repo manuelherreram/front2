@@ -24,9 +24,12 @@ function pedirJugada() {
 /*                                  FUNCION 3                                 */
 /* -------------------------------------------------------------------------- */
 function jugadaRandom() {
-    let numero = parseInt(Math.random() * (3 - 1) + 1)
+    // let numero = parseInt((Math.random() * 3) +1)
+    // let numero = parseInt(Math.random() * 3 + 1)
+    let numero = Math.floor(Math.random()*(3-1+1)+1)
+//  Math.floor(Math.random()*(max-min+1)+min)
    /// random me da un valor entre 0 y 1 -> [0 , 1) 
-   /// Math.random() * (max - min) + min;
+   /// Math.random() * max  + min;
     console.log("---------------------");
     console.log("La eleccion del Computador  es: " );
     console.log(numero);
@@ -71,7 +74,7 @@ function compararJugadas() {
    
 }
 
-const resultadoDePartida = compararJugadas()
+// const resultadoDePartida = compararJugadas()
 /* -------------------------------------------------------------------------- */
 /*                          CONSIGNA MESA DE TRABAJO                          */
 /* -------------------------------------------------------------------------- */
