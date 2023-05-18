@@ -2,16 +2,48 @@
 
 // Vamos a interactuar con el DOM para agregarle mas estilos a nuestro sitio.
 // 👇 Primero capturemos todos los elementos que vamos a modificar.
+const sitio = document.querySelector('body');
+const btnTema = document.querySelector(".tema button")
+const menuItems = document.querySelectorAll("nav li")
+const contenedorDeNoticias = document.querySelector("main")
+const articulos = document.querySelectorAll("article")
+const titulos = document.querySelectorAll("article h2")
 
 
 /* ---------------------------- Editado los ITEMS --------------------------- */
 // 👇acá podemos ver todas las propiedades CSS que podemos modificar con JS
+console.log(menuItems);
+console.log(menuItems[0]);
+console.log(menuItems[0].style);
+// Agregar manualmente nuevos estilos en el menú
+menuItems.forEach( (item) => {
+    item.style.textTransform = "uppercase"
+    item.style.color = "aqua"
+    item.style.backgroundColor = "rgba(255,255,255,0.5)"
+    item.style.borderRadius = "50vh"
+})
+// menuItems.forEach( function(item) {
+//     item.style.textTransform = ""
+// })
 
-
+console.log(contenedorDeNoticias);
 /* ----------------------------- Editando clases ---------------------------- */
 
 // vamos probando uno a uno los métodos
+console.log(sitio.classList);
 
+console.log(sitio.classList.contains("dark"));
+console.log(sitio.classList);
+
+console.log(sitio.classList.add("dark"));
+console.log(sitio.classList);
+
+console.log(sitio.classList.remove("remove"));
+console.log(sitio.classList);
+
+console.log(sitio.classList.toggle("dark"));
+console.log(sitio.classList.contains("dark"));
+console.log(sitio.classList);
 
 
 
