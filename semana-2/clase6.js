@@ -23,8 +23,16 @@ const listadoNoticias = [{
 
 /* -------------------------- PRACTICANDO ATRIBUTOS ------------------------- */
 // Completemos correctamente el 'alt' de cada imagen con la frase "miniatura de noticia"
+// const imagenes = document.querySelectorAll(".noticias article img")
+// console.log(imagenes);
+// console.log(`alt: ${imagenes[0].getAttribute("alt") }`);
+// imagenes[0].setAttribute("alt","miniatura de la noticia")
+// console.log(`alt: ${imagenes[0].getAttribute("alt") }`);
 
-
+// for (let i = 0; i < imagenes.length; i++) {
+//     imagenes[i].setAttribute("alt", "miniatura de la noticia")
+//     console.log(imagenes[i]);    
+// }
 
 
 /* ---------------------- PRACTICANDO CREACION DE NODOS --------------------- */
@@ -32,8 +40,43 @@ const listadoNoticias = [{
 // 2- Comentamos la parte de este código de "Practicando atributos"
 // 3- Vamos a crear de a uno e insertarlos en el HTML usando un bucle👇
 
+const main = document.querySelector("main")
 
+listadoNoticias.forEach( (noticia) => {
+    // 1er paso. crear los elementos
+    const article = document.createElement("article")
+    const h2  = document.createElement("h2")
+    const img  = document.createElement("img")
+    const p  = document.createElement("p")
 
+    //2 completamos los nodos con sus propiedades
+    h2.innerText = noticia.titulo
+    img.setAttribute("src", noticia.foto)
+    img.setAttribute("alt", "miniatura de la noticia" )
+    p.innerText = noticia.epigrafe
+
+    //3  armar los nodos dentro de la etiqueta donde van 
+    article.appendChild(h2)
+    article.appendChild(img)
+    article.appendChild(p)
+
+    // 4  finalmente lo insertamos en el HTML
+    main.appendChild(article)
+})
+
+const noticiasTech = {
+    titulo: "Elon Musk comparó a Soros con Magneto",
+    imagen: "https://statics.eleconomista.com.ar/2023/05/crop/64638b3b4461d__420x280.webp",
+    epigrafe: "Magneto se convierte en tendencia en Twitter después de que Musk comparara a Soros con el personaje de X-Men"
+}
+
+main.innerHTML += `
+    <article>
+        <h2>${noticiasTech.titulo} </h2>
+        <img src="${noticiasTech.imagen}" alt="Elon Musk Enojado" >
+        <p>${noticiasTech.titulo}</p>
+    </article>
+` 
 
 
 /* -------------------------------------------------------------------------- */

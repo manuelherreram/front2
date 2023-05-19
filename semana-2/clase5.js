@@ -30,20 +30,20 @@ console.log(contenedorDeNoticias);
 /* ----------------------------- Editando clases ---------------------------- */
 
 // vamos probando uno a uno los métodos
-console.log(sitio.classList);
+// console.log(sitio.classList);
 
-console.log(sitio.classList.contains("dark"));
-console.log(sitio.classList);
+// console.log(sitio.classList.contains("dark"));
+// console.log(sitio.classList);
 
-console.log(sitio.classList.add("dark"));
-console.log(sitio.classList);
+// console.log(sitio.classList.add("dark"));
+// console.log(sitio.classList);
 
-console.log(sitio.classList.remove("remove"));
-console.log(sitio.classList);
+// console.log(sitio.classList.remove("remove"));
+// console.log(sitio.classList);
 
-console.log(sitio.classList.toggle("dark"));
-console.log(sitio.classList.contains("dark"));
-console.log(sitio.classList);
+// console.log(sitio.classList.toggle("dark"));
+// console.log(sitio.classList.contains("dark"));
+// console.log(sitio.classList);
 
 
 
