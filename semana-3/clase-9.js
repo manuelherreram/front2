@@ -20,31 +20,6 @@ const planesMensuales = [{
 // Escuchamos el evento de 'carga' de la ventana 👇
 window.addEventListener('load', function () {
     
-    const footer = this.document.querySelector('footer');
-
-    //👇 Creamos variables para usarlas dentro del bucle que genera el setInterval
-    let total = planesMensuales.length;
-    let contador = 0;
-
-    // 👇 creamos un intervalo y lo almacenamos en una variable
-    const intervalo = setInterval(function(){
-        // usamos el operador 'resto de' para calcular la posicion
-        const posicion = contador % total;
-
-        console.log(contador);
-        console.log("posicion: ",posicion );
-
-        // insertamos en el HTML una plantilla literal
-        footer.innerHTML = `<p>Plan: <strong>${planesMensuales[posicion].tipo}</strong> $ ${planesMensuales[posicion].costo}</p><p>${planesMensuales[posicion].descripcion}</p>`
-
-        contador++;
-    }, 4000);
-
-    // añadimos la escucha del doble click en el footer para frenar el intervalo
-    footer.addEventListener('dblclick', function(){
-        clearInterval(intervalo);
-        console.log("---> Frenamos el intervalo");
-    })
 
 })
 
