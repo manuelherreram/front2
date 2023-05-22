@@ -44,13 +44,7 @@ const albumesFamosos = [{
 /* -------------------------------------------------------------------------- */
 //do while, prompt, innerText
 function obtenerUsuario() {
-    const nombreUsuario = document.querySelector("#nombreUsuario")
-    let usuario = ""
-    do {
-        usuario =  (prompt("Ingrese su nombre")).toLowerCase()
-    } while (usuario === null || usuario == "" || usuario.length <3 );
 
-    nombreUsuario.innerText = usuario.charAt(0).toUpperCase() + usuario.slice(1)
 }
 obtenerUsuario();
 
@@ -59,17 +53,7 @@ obtenerUsuario();
 /* -------------------------------------------------------------------------- */
 //forEach, template strings, innerHTML
 function renderizarAlbumes(listado) {
-    const covers = document.querySelector(".covers")
-    covers.innerHTML = ""
-    listado.forEach(album => {
-        covers.innerHTML += `
-            <li>
-                <img src="${album.imagen }" alt="${album.nombre}" >
-                <p>${album.nombre}</p>
-                <i id="${album.id}" class="fa fa-heart  ${ album.like  ?  "favorito" : "" }" ></i>
-            </li>
-        `
-    });
+
 };
 
 renderizarAlbumes(albumesFamosos);
