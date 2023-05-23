@@ -44,6 +44,18 @@ const albumesFamosos = [{
 /* -------------------------------------------------------------------------- */
 //do while, prompt, innerText
 function obtenerUsuario() {
+    const nombreUsuario = document.querySelector("#nombreUsuario")
+    let usuario = ""
+    
+    // Pedir el nombre de usuario hasta que sea válido
+    do {
+        usuario = prompt("Ingrese su nombre de usuario: ").toLowerCase()
+        console.log(usuario);
+    } while ( usuario == null || usuario == "" || usuario.length < 3);
+
+    // insertamos el nombre obtenido en el HTML
+    nombreUsuario.textContent = usuario.charAt(0).toUpperCase() + usuario.slice(1)
+    usuario.split(" ",)
 
 }
 obtenerUsuario();
@@ -53,7 +65,23 @@ obtenerUsuario();
 /* -------------------------------------------------------------------------- */
 //forEach, template strings, innerHTML
 function renderizarAlbumes(listado) {
+    const covers = document.querySelector(".covers")
+    // Para asergurarnos de vaciar cualquier contenido que la UL haya tenido por defecto en el HTML
+    covers.innerHTML = ""
 
+    // Recorrer el listado e insertamos en el HTML a través de las templateLiterals
+    listado.forEach((album) => {
+        covers.innerHTML += `
+            <li data-id="${album.id}" >
+                <image src="${album.imagen}" alt="${album.nombre}" >
+                <p> ${album.nombre} </p>
+                <i id="${album.id}" class="fa fa-heart ${ album.like ? "favorito" : "" }  " > </i>
+            </li>
+        `
+           // ☝ importante repasar el operador ternario, en este caso si el album tiene su
+    // propiedad like en true, se le agrega la clase "favorito" al elemento
+
+    });
 };
 
 renderizarAlbumes(albumesFamosos);
