@@ -3,7 +3,7 @@ const albumesFamosos = [{
         id: "x123",
         nombre: "Nevermind",
         imagen: "https://m.media-amazon.com/images/I/71DQrKpImPL._SL1400_.jpg",
-        like: true
+        like: false
     },
     {
         id: "y456",
@@ -53,10 +53,26 @@ function obtenerUsuario() {
         console.log(usuario);
     } while ( usuario == null || usuario == "" || usuario.length < 3);
 
-    // insertamos el nombre obtenido en el HTML
-    nombreUsuario.textContent = usuario.charAt(0).toUpperCase() + usuario.slice(1)
-    usuario.split(" ",)
+    // Divido el nombre completo de la variable  "usuario" en el array "nombres" con el método split()
+    //let  nombres = usuario.split(" ")
+    // console.log(nombres);
 
+    // // Con este for reemplazamos cada elemento del array "nombres" y paso a mayúscula cada "nombre" del array
+    // for (let i = 0; i < nombres.length; i++) {
+    //     nombres[i] = nombres[i].charAt(0).toUpperCase() + nombres[i].slice(1)        
+    // }
+    // console.log(nombres);
+
+    // Mismo plan usando un map
+    let nombres = usuario.split(" ").map( nombre => (nombre.charAt(0).toUpperCase() + nombre.slice(1)))
+    console.log(nombres);
+
+    // vuelvo a asignar al String "usuario" la unión de los elementos del array "nombres" con el método join(" "), para unir los strings en uno sólo, agregando un espacio entre cada uno de ellos gracias al parámetro (" ")
+    usuario = nombres.join(" ")
+    console.log(usuario);
+
+    // insertamos el nombre obtenido en el HTML
+    nombreUsuario.innerText = usuario
 }
 obtenerUsuario();
 
@@ -80,7 +96,6 @@ function renderizarAlbumes(listado) {
         `
            // ☝ importante repasar el operador ternario, en este caso si el album tiene su
     // propiedad like en true, se le agrega la clase "favorito" al elemento
-
     });
 };
 
@@ -101,6 +116,30 @@ renderizarAlbumes(albumesFamosos);
 // sea necesario ( es decir: 1 album, 1 favorito / 2 albumes, 3 favoritos )
 function mostrarDatosEnPerfil() {
     // desarrollar la función 👇
+    const cantAlbums = document.getElementById('cant-albums'),
+        cantFavoritos= document.getElementById("cant-favoritos")
+    let contadorAlbum=0
+    let contadorFavoritos=0
+    
+    albumesFamosos.forEach(album =>{
+        contadorAlbum++
+        if (album.like) {
+            contadorFavoritos++
+        }
+    })
+    console.log(contadorAlbum)
+    console.log(contadorFavoritos)
 
+    if (contadorAlbum == 1){
+        cantAlbums.innerText = contadorAlbum + " album" 
+    }else{
+        cantAlbums.innerText = contadorAlbum + " albumes" 
+    } 
+    if (contadorFavoritos == 1){
+        cantFavoritos.innerText = contadorFavoritos + " favorito" 
+    }else{
+        cantFavoritos.innerText = contadorFavoritos + " favoritos" 
+    } 
 }
 mostrarDatosEnPerfil();
+
