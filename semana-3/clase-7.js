@@ -50,11 +50,11 @@ function obtenerUsuario() {
     // Pedir el nombre de usuario hasta que sea válido
     do {
         usuario = prompt("Ingrese su nombre de usuario: ").toLowerCase()
-        console.log(usuario);
+        // console.log(usuario);
     } while ( usuario == null || usuario == "" || usuario.length < 3);
 
     // Divido el nombre completo de la variable  "usuario" en el array "nombres" con el método split()
-    //let  nombres = usuario.split(" ")
+    // let  nombres = usuario.split(" ")
     // console.log(nombres);
 
     // // Con este for reemplazamos cada elemento del array "nombres" y paso a mayúscula cada "nombre" del array
@@ -65,11 +65,11 @@ function obtenerUsuario() {
 
     // Mismo plan usando un map
     let nombres = usuario.split(" ").map( nombre => (nombre.charAt(0).toUpperCase() + nombre.slice(1)))
-    console.log(nombres);
+    // console.log(nombres);
 
     // vuelvo a asignar al String "usuario" la unión de los elementos del array "nombres" con el método join(" "), para unir los strings en uno sólo, agregando un espacio entre cada uno de ellos gracias al parámetro (" ")
     usuario = nombres.join(" ")
-    console.log(usuario);
+    // console.log(usuario);
 
     // insertamos el nombre obtenido en el HTML
     nombreUsuario.innerText = usuario

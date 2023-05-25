@@ -5,8 +5,27 @@
 // - cambiar el estado del like
 // - volver a renderizar
 function marcarFavorito() {
+    // selecciona todos los botones del like
+    const botonesLike = document.querySelectorAll(".fa-heart")
+    // console.log(botonesLike);
   
+    botonesLike.forEach( boton => {
+        boton.addEventListener("click", (e)=> {
+            console.log(e.target.id);
+            console.log(boton.id);
+            
+            albumesFamosos.forEach( album => {
+                if (e.target.id == album.id) {
+                    album.like = !album.like
+                }
+            })
 
+            // Para renderizar nuevamente las tarjetas para que se pinte de nuevo el album famos
+            renderizarAlbumes(albumesFamosos)
+            // agregar un listener para seguir escuchando si aprieta otro boton
+            marcarFavorito()
+        })
+    })
 }
 marcarFavorito()
 
