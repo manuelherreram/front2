@@ -48,6 +48,27 @@ marcarFavorito()
 
 function eliminarAlbum() {
     // desarrollar la función 👇
+    window.addEventListener("keydown", (e) => { 
+        console.log(e);        
+        console.log(e.key);        
+        if (e.key === "F") {
+            const album = prompt("¿Qué album deseas eliminar, danos el nombre: ?")
+            console.log(album);
+            const posicionParaBuscar = albumesFamosos.findIndex( item => item.nombre.toLowerCase() == album.toLowerCase() )
+            console.log(posicionParaBuscar);
+            // si fue encontrado el nombre del album..
+            if (posicionParaBuscar !== 1 ) {
+                albumesFamosos.splice(posicionParaBuscar, 1)
+            }
+            //👇 post click debemos renderizar nuevamente las tarjetas
+            renderizarAlbumes(albumesFamosos)
+            //👇 post click debemos agregar el listener a cada nuevo boton otra vez ya que el renderizado eliminó lo anterior
+            marcarFavorito()
+
+        }
+     })
+
+
 
 
 }
