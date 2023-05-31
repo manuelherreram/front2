@@ -67,9 +67,10 @@ window.addEventListener('load', function () {
         const confirmacion = confirm("¿Desea conocer más múscia?")
 
         if (confirmacion) {
-            window.open("https://open.spotify.com/", "_blank")
+            // window.open("https://open.spotify.com/", "_blank") // al utilizar el método open me pide la autorización para abrir el popup
+            location.href = "https://open.spotify.com/" //  directamente me redirige al sitio en la misma pestaña
         } else {
-            const perfil = this.document.querySelector(".perfil")
+            const perfil =document.querySelector(".perfil")
             perfil.innerHTML += `
                 <p style="color: green; cursor: pointer ">Usuario oficial de Spotifront</p>
             `
