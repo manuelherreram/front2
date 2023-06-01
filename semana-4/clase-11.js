@@ -3,7 +3,7 @@
 /* -------------------------------------------------------------------------- */
 function capturarDatosFormulario() {
     // 👇 establecemos un objeto vacío para despues rellenarlo
-    const obejetoInformacion = {
+    const objetoInformacion = {
         nombre: "",
         password: "",
         telefono: "",
@@ -12,23 +12,68 @@ function capturarDatosFormulario() {
     }
 
     // capturamos todos los nodos
+    // fielldset Datos
+    const nom = document.querySelector("#nom")
+    const pass = document.querySelector("#pass")
+    const tel = document.querySelector("#tel")
+    
+    //Fieldset listado-hobbies
+    const hobbies = document.querySelectorAll("[name=hobbies]")
+    
+    //Fieldset pais de nacimiento
+    const nacionalidad = document.querySelectorAll("[name=nacionalidad]")
+    console.log(nacionalidad);
     
     // 👇 rellenamos el objeto con la info correspondiente
+    objetoInformacion.nombre = nom.value
+    objetoInformacion.password = pass.value
+    objetoInformacion.telefono = tel.value
     
     // recorremos los checkbox
+    hobbies.forEach ( hobbie => {
+        // Cada hobbie seleccionado lo sumamos al listado de hobbies
+        if (hobbie.checked) {
+            objetoInformacion.hobbies.push(hobbie.id)
+        }
+    })
     
     // recorremos los radio
+    nacionalidad.forEach( nacion => {
+        // la nacionalidad seleccionada es la que se guarda en el objeto
+        objetoInformacion.nacionalidad = nacion.id
+    })
     
         // la nacionalidad seleccionada es la que se guarda en el objeto
         
 
-    
+    return objetoInformacion
 };
+
+// 
 
 /* -------------------------------------------------------------------------- */
 /*                 [2] FUNCION: escuchamos el submit del form                 */
 /* -------------------------------------------------------------------------- */
+const form = document.querySelector("form")
 
+form.addEventListener("submit", (e) => { 
+    // prevenimos el default para que no se intente enviar
+    e.preventDefault()
+
+    // utilizamos nuestra funcion para capturar los datos
+    const datos = capturarDatosFormulario()
+    console.log(datos);
+
+    const errores = validarInformacion(datos);
+    console.log(errores);
+
+    // mostramos los errores presentes
+    renderizarErrores(errores);
+
+    // mostramos mensaje de exito si no hay errores
+    mostrarMensajeExito(errores);
+    
+ })
 
 
 
@@ -42,7 +87,7 @@ function capturarDatosFormulario() {
 /*                         [3] FUNCION: validar datos                         */
 /* -------------------------------------------------------------------------- */
 // Desarrollar la funcion 3 de validar los datos.
-// Esta funcion va a recibir un objeto con la misma estructura de obejetoInformacion
+// Esta funcion va a recibir un objeto con la misma estructura de objetoInformacion
 // Entonces dentro de esta función vamos a chequear ciertas validaciones.
 // 1- La funcion devuelve un listado de errores según las comprobaciones que hace sobre el objeto.
 // 2- Si el nombre no es un texto y tiene menos de 3 caracteres sumar el error: "El nombre debe tener al menos 3 caracteres."
