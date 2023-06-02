@@ -40,7 +40,9 @@ function capturarDatosFormulario() {
     // recorremos los radio
     nacionalidad.forEach( nacion => {
         // la nacionalidad seleccionada es la que se guarda en el objeto
-        objetoInformacion.nacionalidad = nacion.id
+        if (nacion.checked) {
+            objetoInformacion.nacionalidad = nacion.id
+        }
     })
     
         // la nacionalidad seleccionada es la que se guarda en el objeto
@@ -76,12 +78,6 @@ form.addEventListener("submit", (e) => {
  })
 
 
-
-
-
-
-
-
 /* ----------------------------- MESA DE TRABAJO ---------------------------- */
 /* -------------------------------------------------------------------------- */
 /*                         [3] FUNCION: validar datos                         */
@@ -98,6 +94,32 @@ form.addEventListener("submit", (e) => {
 function validarInformacion(usuario) {
     let errores = [];
     // 👇 desarrollar aqui la funcion
+    
+    // Validar el nombre
+    if (!isNaN(usuario.nombre) || usuario.nombre.length < 3) {
+        errores.push("El nombre debe tener al menos 3 caracteres y no debe contener números.")
+    }
+
+    // Validar el password
+    if (usuario.password.trim().length < 6) {
+        errores.push("La contraseña debe tener al menos 6 caracteres, entre letras y símbolos.")
+    }
+
+    // Validar Teléfono
+    if (usuario.telefono.length < 10) {
+        errores.push("No es un teléfono válido.")
+    }
+    
+    // Validariamos Hobbies
+    if (usuario.hobbies.length > 4) {
+        errores.push("Sólo es posible seleccionar 4 hobbies.")
+    }
+    
+    // Validar Nacionalidad
+    if (usuario.nacionalidad == "") {
+        errores.push("Debe seleccionar una nacionalidad.")
+    }
+
 
     return errores;
 }

@@ -3,12 +3,35 @@
 /* -------------------------------------------------------------------------- */
 // Desarrollamos esta funcion para llamarla en el submit
 function renderizarErrores(listado) {
-    ;
-
+    const cajaDeErrores = document.querySelector("#errores")
+    
     // 👇si ya existe la caja la eliminamos del DOM para no multiplicar elementos
+    console.log(cajaDeErrores);
+    if (cajaDeErrores) {
+        cajaDeErrores.remove()
+    }
+    // console.log(cajaDeErrores);
     
     // si el listado no está vacío..
     // creamos la caja con los errores presentes
+    if (listado.length > 0) {
+        const divTemplate = document.createElement("div")
+        divTemplate.setAttribute("id", "errores")
+        divTemplate.style = `
+            background: rgba(255,0,0,0.2);
+            padding: 0.5em 1em;
+            color: red;
+            margin: 0.5em 0;
+        `
+        listado.forEach(error => {
+            divTemplate.innerHTML += `<p>
+            <small>
+                ${error}
+            </small>
+            </p>`
+        });
+        form.appendChild(divTemplate)
+    }
     
 }
 
@@ -26,4 +49,5 @@ function renderizarErrores(listado) {
 
 function mostrarMensajeExito(listado) {
     //   desarrollar la funcion aqui
+
 }
