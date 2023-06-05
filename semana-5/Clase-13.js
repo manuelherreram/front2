@@ -1,17 +1,11 @@
 /* -------------------------- estado por defecto ------------------------- */
 const estadoUsuario = {
-    email: "",
-    password: "",
-    rol: "",
-    terminos: false
+  
 };
 
 // ponemos en true solo cuando estén correctos
 const estadoErroresOK = {
-    email: false,
-    password: false,
-    rol: false,
-    terminos: false
+  
 };
 
 /* ---------------------------------- nodos --------------------------------- */
