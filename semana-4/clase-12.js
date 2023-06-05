@@ -31,8 +31,7 @@ function renderizarErrores(listado) {
             </p>`
         });
         form.appendChild(divTemplate)
-    }
-    
+    }    
 }
 
 /* ----------------------------- MESA DE TRABAJO ---------------------------- */
