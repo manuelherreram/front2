@@ -48,5 +48,23 @@ function renderizarErrores(listado) {
 
 function mostrarMensajeExito(listado) {
     //   desarrollar la funcion aqui
+    if (listado.length == 0) {
+        const divTemplate = document.createElement("div")
+        divTemplate.setAttribute("id", "exito")
+        divTemplate.style = "background:rgba(0, 255, 0, 0.2);padding:.5em 1em;color: green;margin: .5em 0;";
+        divTemplate.innerHTML += `<p><strong>"¡Formulario completado con éxito!"</strong></p>`
+        form.appendChild(divTemplate)
+
+        const boton = document.querySelector("button")
+        boton.setAttribute("disabled", "")
+
+        const cajaExito = document.querySelector("#exito")
+        setTimeout(() => {
+            cajaExito.remove()
+            boton.removeAttribute("disabled")
+            form.reset()
+        }, 4000);
+
+    }
 
 }
