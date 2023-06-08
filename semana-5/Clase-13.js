@@ -54,7 +54,7 @@ formulario.addEventListener('change', function () {
     console.log(estadoUsuario);
     estadoUsuario.password = inputPassword.value
     estadoUsuario.rol = inputRol.value
-    estadoUsuario.terminos = inputTerminos.value
+    estadoUsuario.terminos = inputTerminos.checked
 
     // 👇 actualizo el estado del error segun el estado del usuario
     estadoErroresOK.email =  validarEmail(estadoUsuario.email)
@@ -143,7 +143,7 @@ formulario.addEventListener('submit', function (evento) {
     ) {
         alert("¡Pasó todas las validaciones!")
     }
-
+    navegarPaginaExito()
 
 });
 
@@ -163,5 +163,14 @@ formulario.addEventListener('submit', function (evento) {
 
 function navegarPaginaExito() {
     //   desarrollar la funcion aqui
+    localStorage.setItem('user', JSON.stringify(estadoUsuario));
+    
+    const btn = document.querySelector("button")
+
+    btn.setAttribute("disabled", true)
+    btn.innerText = 'Cargando...'
+    setTimeout(() => {
+        location.replace("./usuario.html")
+    }, 3000);
 
 }

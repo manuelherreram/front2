@@ -10,10 +10,11 @@ window.addEventListener('load', function () {
     // 👇 Todo lo que desarrollamos dentro, se ejecuta una vez que se carga la página
 
     // nos traemos la info del storage
- 
+    const user = recuperarDataStorage()
+    console.log(user);
 
     // utilizamos la funcion para el renderizado
- 
+    renderizarElementos(user)
 
 })
 
@@ -21,6 +22,15 @@ window.addEventListener('load', function () {
 /*                 [7] FUNCION: Recuperar la info del storage                 */
 /* -------------------------------------------------------------------------- */
 function recuperarDataStorage() {
+    // Aqui obtengo del local storage un objeto en formato JSON
+    const datosEnJSON = localStorage.getItem("user")
+    // console.log(datosEnJSON);
+
+    // Aqui transformo ese objeto JSON en un objeto literal para poder iterarlo con javascript
+    const datosParseados = JSON.parse(datosEnJSON)
+    // console.log(datosParseados);
+
+    return datosParseados
     
 }
 
@@ -30,9 +40,12 @@ function recuperarDataStorage() {
 /* -------------------------------------------------------------------------- */
 function renderizarElementos(objeto) {
     // capturamos los nodos
-
+    const email = document.querySelector("#email")
+    const perfil = document.querySelector("#perfil")
 
     // pintamos las propiedades del objeto en pantalla
+    email.textContent = objeto.email
+    perfil.innerText = objeto.rol
 
 }
 
