@@ -7,11 +7,19 @@
 function chequearUsuarioValido() {
 
     // 👇 objeto que obtenemos del storage
-
+    const usuario = JSON.parse(localStorage.getItem("user"))
+    console.log(usuario);
 
     // chequeamos las propiedades del objeto
-    
-    
+    if (usuario !== null) {
+        // 
+        const { email, password, rol } = usuario
+        console.log("Usuario");
+        console.log(` -> ${email} \n  -> ${password} \n  -> ${rol} \n  `);
+    } else {
+        localStorage.clear()
+        location.replace("./")
+    }
 
 }
 

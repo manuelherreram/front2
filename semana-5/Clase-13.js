@@ -141,9 +141,9 @@ formulario.addEventListener('submit', function (evento) {
         estadoErroresOK.rol &&
         estadoErroresOK.terminos
     ) {
-        alert("¡Pasó todas las validaciones!")
+        // alert("¡Pasó todas las validaciones!")
+        navegarPaginaExito()
     }
-    navegarPaginaExito()
 
 });
 
@@ -174,3 +174,5 @@ function navegarPaginaExito() {
     }, 3000);
 
 }
+
+

@@ -6,6 +6,8 @@
 /* -------------------------------------------------------------------------- */
 /*           [6] FUNCION: Escuchamos el evento de carga de la página          */
 /* -------------------------------------------------------------------------- */
+chequearUsuarioValido()
+
 window.addEventListener('load', function () {
     // 👇 Todo lo que desarrollamos dentro, se ejecuta una vez que se carga la página
 
@@ -46,9 +48,10 @@ function renderizarElementos(objeto) {
     // pintamos las propiedades del objeto en pantalla
     email.textContent = objeto.email
     perfil.innerText = objeto.rol
-
+    
 }
 
+botonCerrarSesion()
 
 /* ----------------------------- MESA DE TRABAJO ---------------------------- */
 /* -------------------------------------------------------------------------- */
@@ -73,5 +76,26 @@ function renderizarElementos(objeto) {
 
 function botonCerrarSesion() {
     //    👇 desarrollar la función
+    const tarjeta = document.querySelector('.user')
 
+    const boton = document.createElement('button');
+    boton.style = `
+        padding: 5px 20px; 
+        background-color: 
+        rgba(255,0,0,0.2); 
+        color: red; 
+        margin: 20px; 
+        border: none; 
+        cursor: pointer;
+    `;
+    boton.textContent = "Cerrar sesión";
+
+    tarjeta.appendChild(boton);
+
+    boton.addEventListener('click', ()=>{
+        if(confirm("¿Seguro desea cerrar sesión?")){
+            localStorage.clear();
+            location.replace('./');
+        }
+    })
 }
