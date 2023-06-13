@@ -75,7 +75,18 @@ let listadoComentarios = [{
 /* -------------------------------------------------------------------------- */
 /*                      [1] FUNCION: Escuchamos el click                      */
 /* -------------------------------------------------------------------------- */
+const boton = document.querySelector("button")
 
+boton.addEventListener("click", () => {
+    console.log("Click para ver más comentarios...");
+
+    consultaAsincrona("endpoint")
+        .then(respuesta => {
+            console.log(respuesta)
+
+        })
+    // .catch(rechazo => console.warn(rechazo))
+})
 
 /* -------------------------------------------------------------------------- */
 /*                      [2] FUNCION: creamos una promesa                      */
@@ -85,7 +96,25 @@ let listadoComentarios = [{
 
 function consultaAsincrona(texto) {
 
+    return new Promise((resolve, reject) => {
+        // simular la espera de información del serkvidor con setTimeout
+        setTimeout(() => {
+            // Chequear sque el teixto que recibe esta promesa sea el correcto
 
+            if (texto === "endpoint") {
+                // Si está OK devolvemos el listado.
+                resolve(listadoComentarios)
+            } else {
+                // Otra posibilidad es que la promesa sea rechazada
+                reject(
+                    {
+                        mensaje: "Consulta rechazadas, no es la clave correcta",
+                        status: 200
+                    }
+                )
+            }
+        }, 2500);
+    })
 
 }
 
