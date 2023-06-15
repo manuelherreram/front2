@@ -10,6 +10,19 @@
 // Vamos a implementar el endpoint que nos devuelve comentarios para mostrarlos en pantalla.
 
 function consultaApi(endpoint) {
+    fetch(endpoint)
+        .then(objetoRespuestaJSON => {
+            console.log(objetoRespuestaJSON);
+            // console.log(objetoRespuestaJSON.json());
+            const promesaJSON = objetoRespuestaJSON.json()
+            return promesaJSON
+        })
+        .then(datosJS => {
+            // console.log(datosJS);
+            renderizarElementos(datosJS)
+        })
+        .catch(err => console.log(err))
+
 
 }
 
@@ -21,6 +34,14 @@ function consultaApi(endpoint) {
 const boton = document.querySelector('button');
 const endpoint = 'https://jsonplaceholder.typicode.com/comments';
 
+boton.addEventListener("click", () => {
+    console.log("Click para ver los comentarios");
+
+    consultaApi(endpoint)
+
+    console.log("Fin del evento");
+})
+
 
 /* -------------------------------------------------------------------------- */
 /*                      [6] FUNCION: renderizar elementos                     */
@@ -29,6 +50,56 @@ const endpoint = 'https://jsonplaceholder.typicode.com/comments';
 // el .map() y .join() para obtener el resultado esperado.
 
 function renderizarElementos(listado) {
+    // console.log(listado);
+    const comentarios = document.querySelector(".comentarios")
+
+    /// Metodo con .forEach()
+    /*
+    console.log(listado);
+    comentarios.innerHTML = ""
+    listado.forEach(item => {
+        comentarios.innerHTML += `
+            <div class="comentario">
+                <h4>${item.email}</h4>
+                <p>${item.body}</p>
+            </div>
+        `
+    });
+    console.log(listado);
+    */
+
+    /// Metodo con .map()
+    // /*
+    // const listaMap = listado.map(item => {
+    //     return `
+    //         <div class="comentario">
+    //             <h4>${item.email}</h4>
+    //             <p>${item.body}</p>
+    //         </div>
+    //     `
+    // })
+
+    // console.log(listado);
+    // console.log(listaMap);
+
+
+    // comentarios.innerHTML = listaMap
+    // comentarios.innerHTML = listaMap.join("")
+
+    ///Resumiendo
+    comentarios.innerHTML = listado.map(item => {
+        return `
+            <div class="comentario">
+                <h4>${item.email}</h4>
+                <p>${item.body}</p>
+            </div>
+        `
+    }).join("")
+
+    console.log(listado);
+
+
+    // */
 
 }
 
