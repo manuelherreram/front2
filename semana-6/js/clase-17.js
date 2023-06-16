@@ -12,18 +12,33 @@
 function consultaApi(endpoint) {
     fetch(endpoint)
         .then(objetoRespuestaJSON => {
-            console.log(objetoRespuestaJSON);
-            // console.log(objetoRespuestaJSON.json());
-            const promesaJSON = objetoRespuestaJSON.json()
-            return promesaJSON
+            // console.log(objetoRespuestaJSON);
+            if (objetoRespuestaJSON.ok) {
+                return objetoRespuestaJSON.json()
+            }
+            return Promise.reject(objetoRespuestaJSON) // Con esto yo me aseguro de que si la respueta es rechazada, puedo enviar al catch un objeto con el tipo de error para ser evaluado
         })
         .then(datosJS => {
             // console.log(datosJS);
             renderizarElementos(datosJS)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err.status)
+            if (err.status == 404) {
+                console.warn("La ruta que estás buscando no existe, o algo de eso no va bien")
+            } else if (err.status == 400) {
+                console.warn("El usuario ya se encuentra registrado / Alguno de los datos requeridos está incompleto")
+            } else if (err.status == 500) {
+                console.warn("Error del servidor")
+            } else if (err.status == 401) {
+                console.warn("\✋🏼 ¡No está autirizado a acceder a la URL! ")
+                alert("\✋🏼 ¡No está autirizado a acceder a la URL! ")
+            } else {
+                console.error("La URL es incorrecta! ")
+                alert("\🛑 ¡La URL es incorrecta o no existe! ")
+            }
 
-
+        })
 }
 
 /* -------------------------------------------------------------------------- */
