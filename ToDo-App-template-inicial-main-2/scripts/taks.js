@@ -86,10 +86,6 @@ window.addEventListener('load', function () {
       .catch(error => {
         console.log(error);
       })
-
-
-
-
   };
 
 
@@ -99,6 +95,7 @@ window.addEventListener('load', function () {
 
   formCrearTarea.addEventListener('submit', function (event) {
 
+
   });
 
 
@@ -107,10 +104,10 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
   function renderizarTareas(listado) {
     // Obtener los listados y limpiar el contenido que tenga, para que no se sobreescriban las "tarjetas"
-    const tareasPendientes = document.querySelector('.tareas-pendientes');
-    const tareasTerminadas = document.querySelector('.tareas-terminadas');
-    tareasPendientes.innerHTML = "";
-    tareasTerminadas.innerHTML = "";
+    const tareasPendientes = document.querySelector(".tareas-pendientes")
+    const tareasTerminadas = document.querySelector(".tareas-terminadas")
+    tareasPendientes.innerHTML = ""
+    tareasTerminadas.innerHTML = ""
 
     //Buscamos el contador de tareas en verde de nuestro html
     const numeroFinalizados = document.querySelector("#cantidad-finalizadas")
@@ -124,39 +121,33 @@ window.addEventListener('load', function () {
       if (tarea.completed) {
         contador++
         tareasTerminadas.innerHTML += `
-          <li class="tarea">
-            <div class="hecha">
-              <i class="fa-regular fa-circle-check"></i>
-            </div>
-            <div class="descripcion">
-              <p class="nombre">${tarea.description}</p>
-              <div class="cambios-estados">
-                <button class="change incompleta" id="${tarea.id}" ><i class="fa-solid fa-rotate-left"></i></button>
-                <button class="borrar" id="${tarea.id}"><i class="fa-regular fa-trash-can"></i></button>
-              </div>
-            </div>
-          </li>
-        `
+           <li class="tarea">
+             <div class="hecha">
+               <i class="fa-regular fa-circle-check"></i>
+             </div>
+             <div class="descripcion">
+               <p class="nombre">${tarea.description}</p>
+               <div class="cambios-estados">
+                 <button class="change incompleta" id="${tarea.id}" ><i class="fa-solid fa-rotate-left"></i></button>
+                 <button class="borrar" id="${tarea.id}"><i class="fa-regular fa-trash-can"></i></button>
+               </div>
+             </div>
+           </li>
+         `
       } else {
         tareasPendientes.innerHTML += `
-       <li class="tarea">
-            <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
-            <div class="descripcion">
-              <p class="nombre">${tarea.description}</p>
-              <p class="timestamp">${fecha.toLocaleDateString()}</p>
-            </div>
-          </li>
-        `
+        <li class="tarea">
+             <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
+             <div class="descripcion">
+               <p class="nombre">${tarea.description}</p>
+               <p class="timestamp">${fecha.toLocaleDateString()}</p>
+             </div>
+           </li>
+         `
       }
+      numeroFinalizados.innerHTML = contador
 
-    });
-
-
-
-
-
-
-
+    })
   };
 
   /* -------------------------------------------------------------------------- */
