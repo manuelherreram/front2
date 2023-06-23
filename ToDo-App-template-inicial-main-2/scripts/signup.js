@@ -15,6 +15,8 @@ window.addEventListener('load', function () {
         event.preventDefault();
         console.log("Preparando datos para el registro...");
 
+        // Estaría bueno en este punto agregar funciones que me permitan validar el tipo de datos que recibo de los inputs, asi los normalizo antes de pasarlo al objeto "payload", estas funciones para validar, se encuentran en el utils.js
+
         const payload = {
             firstName: nombre.value,
             lastName: apellido.value,

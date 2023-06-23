@@ -6,9 +6,6 @@ window.addEventListener('load', function () {
     const password = document.querySelector("#inputPassword")
     const url = "https://todo-api.ctd.academy/v1"
 
-
-
-
     /* -------------------------------------------------------------------------- */
     /*            FUNCIÓN 1: Escuchamos el submit y preparamos el envío           */
     /* -------------------------------------------------------------------------- */
