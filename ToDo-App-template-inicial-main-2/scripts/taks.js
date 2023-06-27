@@ -10,7 +10,7 @@ if (!localStorage.jwt) {
 window.addEventListener('load', function () {
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const URL = "https://todo-api.ctd.academy/v1";
-  const token = localStorage.jwt
+  const token = JSON.parse(localStorage.jwt)
 
   const formCrearTarea = document.querySelector('.nueva-tarea');
   const nuevaTarea = document.querySelector('#nuevaTarea');
@@ -42,7 +42,7 @@ window.addEventListener('load', function () {
     const settings = {
       method: "GET",
       headers: {
-        authorization: JSON.parse(token)
+        authorization: token
       }
     }
 
@@ -68,7 +68,7 @@ window.addEventListener('load', function () {
     const settings = {
       method: "GET",
       headers: {
-        authorization: JSON.parse(token)
+        authorization: token
       }
     }
 
@@ -94,7 +94,35 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
 
   formCrearTarea.addEventListener('submit', function (event) {
+    event.preventDefault()
+    console.log("Crear tarea");
+    console.log(nuevaTarea.value);
 
+    const payload = {
+      description: nuevaTarea.value.trim()
+    }
+
+    const settings = {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token,
+      }
+    }
+
+    console.log("Creando uan tarea en la base de datos");
+    fetch(`${URL}/tasks`, settings)
+      .then(res => res.json())
+      .then(data => {
+        console.log("Promesa cumplida");
+        console.log(data);
+        consultarTareas()
+      })
+      .catch(err => console.log(err))
+
+    // Limpiamos el form
+    formCrearTarea.reset();
 
   });
 
@@ -154,6 +182,45 @@ window.addEventListener('load', function () {
   /*                  FUNCIÓN 6 - Cambiar estado de tarea [PUT]                 */
   /* -------------------------------------------------------------------------- */
   function botonesCambioEstado() {
+    const btnCambioEstado = document.querySelectorAll(".change")
+
+    btnCambioEstado.forEach(boton => {
+      // A cada boton le asignaremos una funcionalidad
+      boton.addEventListener("click", (e) => {
+        console.log("Cambio de estado de la tarea...");
+        console.log(e.target);
+        console.log(e.target.id);
+
+        const id = e.target.id
+        const uri = `${URL}/tasks/${id}`
+        const payload = {}
+
+        // Segun el tipo de boton que fue clickeado, podemos cambiar el estado de la tarea
+        if (e.target.classList.contains("incompleta")) {
+          // si esta completa, la paso a pendiente
+          payload.completed = false
+        } else {
+          // Sino, está pendiente y la paso a completada
+          payload.completed = true
+        }
+        const settings = {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+            authorization: token
+          },
+          body: JSON.stringify(payload)
+        }
+
+        fetch(uri, settings)
+          .then(res => {
+            console.log(res)
+            // Vuelvo a consultar la tareas actualizadas y volverlas a pitnar en pantalla (renderizar)
+            consultarTareas()
+          })
+          .catch(err => console.log(err))
+      })
+    })
 
 
 
