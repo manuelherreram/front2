@@ -6,6 +6,19 @@ window.addEventListener('load', function () {
     const password = document.querySelector("#inputPassword")
     const url = "https://todo-api.ctd.academy/v1"
 
+
+
+    // Aqui en eset punto yo me encargo de mandar un a llamar la las funcion normalizar Texto y las validaciones
+
+    // Valido si los campos están vacios
+    email.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${email.name}`, e))
+    password.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${password.name}`, e))
+
+    // Valido que los campos tengan los requierimientos necesarios en tiempo real
+    email.addEventListener("input", validarEmail)
+    password.addEventListener("input", validarContrasenia)
+
+
     /* -------------------------------------------------------------------------- */
     /*            FUNCIÓN 1: Escuchamos el submit y preparamos el envío           */
     /* -------------------------------------------------------------------------- */
@@ -17,8 +30,8 @@ window.addEventListener('load', function () {
 
         // Crear el cuerpo de la request nuestro payload
         const payload = {
-            email: email.value,
-            password: password.value
+            email: normalizarEmail(email.value),
+            password: normalizarTexto(password.value)
         }
         // console.log(payload);
 
