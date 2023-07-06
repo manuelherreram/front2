@@ -8,6 +8,10 @@ if (!localStorage.jwt) {
 
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
 window.addEventListener('load', function () {
+  // inicializamos la librería de AOS
+  AOS.init();
+
+
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const URL = "https://todo-api.ctd.academy/v1";
   const token = JSON.parse(localStorage.jwt)
@@ -25,13 +29,38 @@ window.addEventListener('load', function () {
   /*                          FUNCIÓN 1 - Cerrar sesión                         */
   /* -------------------------------------------------------------------------- */
 
-  btnCerrarSesion.addEventListener('click', function (e) {
-    const cerrarSesion = confirm(" ¿Está seguro de que desea cerrar sesión?")
+  btnCerrarSesion.addEventListener('click', function () {
+    // const cerrarSesion = confirm(" ¿Está seguro de que desea cerrar sesión?")
 
-    if (cerrarSesion) {
-      localStorage.clear()
-      location.replace("index.html")
-    }
+    // if (cerrarSesion) {
+    //   localStorage.clear()
+    //   location.replace("index.html")
+    // }
+
+    //  agregar la librería del sweetAlert 
+    Swal.fire({
+      title: '¿Está seguro de cerrar sesión?',
+      // text: "You won't be able to revert this!",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, deseo salir!',
+      cancelButtonText: '¡Cancelar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          '¡Hasta Luego!',
+          'Te esperamos pronto.',
+          'success'
+        )
+        setTimeout(() => {
+          localStorage.clear()
+          location.replace("index.html")
+
+        }, 850);
+      }
+    })
   });
 
   /* -------------------------------------------------------------------------- */
@@ -149,7 +178,11 @@ window.addEventListener('load', function () {
       if (tarea.completed) {
         contador++
         tareasTerminadas.innerHTML += `
-           <li class="tarea">
+           <li 
+            class="tarea" 
+            data-aos="flip-up" 
+            data-aos-easing="ease-in-back"
+           >
              <div class="hecha">
                <i class="fa-regular fa-circle-check"></i>
              </div>
@@ -164,7 +197,13 @@ window.addEventListener('load', function () {
          `
       } else {
         tareasPendientes.innerHTML += `
-        <li class="tarea">
+        <li 
+          class="tarea" 
+          data-aos="zoom-in" 
+          data-aos-easing="ease-in"
+          data-aos-duration="450"
+
+        >
              <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
              <div class="descripcion">
                <p class="nombre">${tarea.description}</p>

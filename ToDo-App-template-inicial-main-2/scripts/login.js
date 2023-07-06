@@ -8,7 +8,7 @@ window.addEventListener('load', function () {
 
 
 
-    // Aqui en eset punto yo me encargo de mandar un a llamar la las funcion normalizar Texto y las validaciones
+    // Aqui en este punto yo me encargo de mandar un a llamar la las funcion normalizar Texto y las validaciones
 
     // Valido si los campos están vacios
     email.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${email.name}`, e))

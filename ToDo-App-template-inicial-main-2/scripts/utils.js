@@ -20,6 +20,7 @@ const isEmpty = (message, e) => {
     const fieldValue = normalizarEmail(field.value)
     // console.log(field);
 
+    // 
     if (fieldValue.length == 0) {
         setErrors(message, field)
     } else {
